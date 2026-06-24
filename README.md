@@ -1,12 +1,13 @@
-Overview
+**Overview**
+
 This repository contains the official implementation used to generate the AngioLens coronary angiography dataset and train deep learning models for coronary vessel segmentation.
 
-The repository is organized into two main components:
+**The repository is organized into two main components:**
 
 Dataset Generation and Preprocessing
 Coronary Vessel Segmentation Training
 
-00_dataset_generation.py
+**1-dataset_generation.py**
 
 Automated preprocessing pipeline for coronary angiography dataset generation.
 
@@ -25,7 +26,7 @@ Export of selected frames as 512 × 512 PNG images.
 
 This pipeline converts raw clinical angiography videos into a structured AI-ready image dataset while reducing redundancy and preserving diagnostically relevant information.
 
-01_vessel_training.py
+**2- vessel_training.py**
 
 Coronary vessel segmentation training pipeline.
 
