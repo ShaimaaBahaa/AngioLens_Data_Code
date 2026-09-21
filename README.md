@@ -1,41 +1,69 @@
-**Overview**
+# AngioLens Data Code
 
-This repository contains the official implementation used to generate the AngioLens coronary angiography dataset and train deep learning models for coronary vessel segmentation.
+## Overview
 
-**The repository is organized into two main components:**
+This repository contains the code used to generate and technically validate the AngioLens coronary angiography dataset.
 
-Dataset Generation and Preprocessing
-Coronary Vessel Segmentation Training
+The repository is organized into three main components:
 
-**1-dataset_generation.py**
+1. Dataset generation and preprocessing
+2. Coronary vessel segmentation training
+3. Final segmentation evaluation
 
-Automated preprocessing pipeline for coronary angiography dataset generation.
+## 1. Dataset Generation and Preprocessing
 
-Main functionalities:
+### `AngioLens_Data_Preprocessing.py`
 
-Reading multi-frame DICOM angiography videos.
-Frame normalization using min-max normalization.
-Edge information extraction using the Canny edge detector.
-Contrast assessment using intensity variance.
-Frame quality scoring and ranking.
-Selection of the most informative frames from each angiography video.
-Image enhancement using CLAHE.
-Noise reduction using Gaussian filtering.
-Preservation of the original folder hierarchy.
-Export of selected frames as 512 × 512 PNG images.
+This script processes multi-frame DICOM coronary angiography videos and generates the final image dataset.
 
-This pipeline converts raw clinical angiography videos into a structured AI-ready image dataset while reducing redundancy and preserving diagnostically relevant information.
+**Main functionalities:**
 
-**2- vessel_training.py**
+- DICOM frame extraction and normalization
+- Edge- and contrast-based frame scoring
+- Automated selection of informative frames
+- CLAHE-based image enhancement
+- Gaussian noise reduction
+- Preservation of the original folder structure
+- PNG image generation
 
-Coronary vessel segmentation training pipeline.
+## 2. Coronary Vessel Segmentation Training
 
-Main functionalities:
+### `AngioLens_Vessel_Training.ipynb`
 
-U-Net architecture with ResNet34 encoder.
-Training using manually annotated vessel masks.
-Data augmentation using Albumentations.
-Combined Dice and Binary Cross-Entropy loss.
-Vessel mask prediction and refinement.
-Coronary artery centerline extraction.
-Visualization and evaluation of segmentation results.
+This notebook implements the segmentation-based technical validation and model training pipeline.
+
+**Main functionalities:**
+
+- Dual-model FR-UNet inference
+- Consensus pseudo-label generation
+- Pseudo-label quality assessment and filtering
+- Patient-level dataset splitting
+- Data augmentation
+- FR-UNet fine-tuning
+- Training and validation monitoring
+
+## 3. Final Segmentation Evaluation
+
+### `AngioLens_FRUNet_Final_Evaluation.ipynb`
+
+This notebook performs the final evaluation of the fine-tuned FR-UNet model.
+
+**Main functionalities:**
+
+- Validation-based threshold optimization
+- Independent test-set evaluation
+- Bootstrap confidence intervals
+- Category-wise performance analysis
+- Advanced segmentation metrics
+- Failure analysis
+- Qualitative evaluation
+
+## Dataset
+
+The AngioLens dataset is publicly available on Zenodo.
+
+**DOI:** 10.5281/zenodo.20813162
+
+## Citation
+
+If you use AngioLens or the accompanying code in your research, please cite the associated Data Descriptor.
